@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JOGO DA VELHA</title>
+
+
+
+    <!-- 
+    - Não identifica/notifica empate;
+    Foi feito uma variavel contador que toda vez que passava pelo botão incrementava +1 até o máximo de 9, chegando a 9 a condição exebiria a msg de empate.
+
+    - Não apresenta o botão pra recomeçar;
+    Acrescentei um botão que chama um função que ativa os botões novamente.
+
+    - Não trava ao final do jogo;
+    Crirei um metodo que toda vez que um botão é apertado ele é desabilitado.
+
+    - Não identifiquei a inovação solicitada nos requisitos.
+    Diferencial é o Minecraft
+     -->
+
+    <style>
+        body {
+            background-color: chocolate;
+            background-size: 100%;
+        }
+
+        button {
+            background-image: url(terra.jpg);
+            height: 100px;
+            width: 100px;
+            border-radius: 5px;
+        }
+
+        .container {
+            display: grid;
+            justify-content: center;
+            align-items: center;
+            grid-template-columns: 60px 60px 60px;
+            gap: 7px 50px;
+            grid-auto-flow: row;
+            grid-template-areas:
+
+                ". . ."
+                ". . ."
+                ". . .";
+        }
+    </style>
+
+
+
+</head>
+
+
+
+<body>
+    <br><br>
+    <br><br><br><br><br>
+    <div class="container">
+
+        <button id="bt1" onclick="tratarBotao(1)" class="bt1"></button>
+        <button id="bt2" onclick="tratarBotao(2)" class="bt2"></button>
+        <button id="bt3" onclick="tratarBotao(3)" class="bt3"></button>
+        <button id="bt4" onclick="tratarBotao(4)" class="bt4"></button>
+        <button id="bt5" onclick="tratarBotao(5)" class="bt5"></button>
+        <button id="bt6" onclick="tratarBotao(6)" class="bt6"></button>
+        <button id="bt7" onclick="tratarBotao(7)" class="bt7"></button>
+        <button id="bt8" onclick="tratarBotao(8)" class="bt8"></button>
+        <button id="bt9" onclick="tratarBotao(9)" class="bt9"></button>
+
+
+    </div>
+    <br><br><br><button onclick="refresh()" id="atualizar"
+        style="background-image: none; background-color: brown; ">ATUALIZAR</button>
+
+    <script>
+        var empate = 0
+        var proximaJogada = "x"
+        var x = 0
+        function tratarBotao(botao) {
+            var ident = "bt" + botao
+            console.log(ident)
+
+
+
+            if (proximaJogada == "x") {
+                empate++
+                proximaJogada = "o"
+                document.getElementById(ident).disabled = true
+                document.getElementById(ident).innerHTML = `<img src="O.jpg">`
+                console.log(empate)
+
+
+
+            } else {
+                if (proximaJogada == "o") {
+                    empate++
+                    proximaJogada = "x"
+                    document.getElementById(ident).disabled = true
+                    document.getElementById(ident).innerHTML = `<img src="X.jpg">`
+                    console.log(empate)
+
+                }
+            } compararVencedor()
+            if (x == 0 && empate == 9) {
+            alert("EMPATE")
+            crashar()
+        }
+
+        }
+
+        function compararVencedor() {
+
+            var bt1 = document.getElementById("bt1").innerHTML
+            var bt2 = document.getElementById("bt2").innerHTML
+            var bt3 = document.getElementById("bt3").innerHTML
+            var bt4 = document.getElementById("bt4").innerHTML
+            var bt5 = document.getElementById("bt5").innerHTML
+            var bt6 = document.getElementById("bt6").innerHTML
+            var bt7 = document.getElementById("bt7").innerHTML
+            var bt8 = document.getElementById("bt8").innerHTML
+            var bt9 = document.getElementById("bt9").innerHTML
+            if (bt1 == bt2 && bt1 == bt3 && bt1 != "") {
+                x = 1
+                if (bt1 == `<img src="X.jpg">`)
+                    alert("X " + "ganhou")
+                crashar()
+                if (bt1 == `<img src="O.jpg">`)
+                    alert("O " + "ganhou")
+                crashar()
+            }
+            if (bt4 == bt5 && bt4 == bt6 && bt4 != "") {
+                x = 1
+                if (bt4 == `<img src="X.jpg">`)
+                    alert("X " + "ganhou")
+                crashar()
+                if (bt4 == `<img src="O.jpg">`)
+                    alert("O " + "ganhou")
+                crashar()
+            }
+            if (bt7 == bt8 && bt7 == bt9 && bt7 != "") {
+                x = 1
+                if (bt7 == `<img src="X.jpg">`)
+                    alert("X " + "ganhou")
+                crashar()
+                if (bt7 == `<img src="O.jpg">`)
+                    alert("O " + "ganhou")
+                crashar()
+            }
+            if (bt1 == bt5 && bt1 == bt9 && bt1 != "") {
+                x = 1
+                if (bt1 == `<img src="X.jpg">`)
+                    alert("X " + "ganhou")
+                crashar()
+                if (bt1 == `<img src="O.jpg">`)
+                    alert("O " + "ganhou")
+                crashar()
+            }
+            if (bt3 == bt5 && bt3 == bt7 && bt3 != "") {
+                x = 1
+                if (bt3 == `<img src="X.jpg">`)
+                    alert("X " + "ganhou")
+                crashar()
+                if (bt3 == `<img src="O.jpg">`)
+                    alert("O " + "ganhou")
+                crashar()
+            }
+            if (bt1 == bt4 && bt1 == bt7 && bt1 != "") {
+                x = 1
+                if (bt1 == `<img src="X.jpg">`)
+                    alert("X " + "ganhou")
+                crashar()
+                if (bt1 == `<img src="O.jpg">`)
+                    alert("O " + "ganhou")
+                crashar()
+            }
+            if (bt2 == bt5 && bt2 == bt8 && bt2 != "") {
+                x = 1
+                if (bt2 == `<img src="X.jpg">`)
+                    alert("X " + "ganhou")
+                crashar()
+                if (bt2 == `<img src="O.jpg">`)
+                    alert("O " + "ganhou")
+                crashar()
+            }
+            if (bt3 == bt6 && bt3 == bt9 && bt3 != "") {
+                x = 1
+                if (bt3 == `<img src="X.jpg">`)
+                    alert("X " + "ganhou")
+                crashar()
+                if (bt3 == `<img src="O.jpg">`)
+                    alert("O " + "ganhou")
+                crashar()
+            }
+
+
+        }
+        function crashar() {
+
+            document.getElementById("bt1").disabled = true
+            document.getElementById("bt2").disabled = true
+            document.getElementById("bt3").disabled = true
+            document.getElementById("bt4").disabled = true
+            document.getElementById("bt5").disabled = true
+            document.getElementById("bt6").disabled = true
+            document.getElementById("bt7").disabled = true
+            document.getElementById("bt8").disabled = true
+            document.getElementById("bt9").disabled = true
+
+
+        }
+        function refresh() {
+            document.getElementById("bt1").innerHTML = ""
+            document.getElementById("bt2").innerHTML = ""
+            document.getElementById("bt3").innerHTML = ""
+            document.getElementById("bt4").innerHTML = ""
+            document.getElementById("bt5").innerHTML = ""
+            document.getElementById("bt6").innerHTML = ""
+            document.getElementById("bt7").innerHTML = ""
+            document.getElementById("bt8").innerHTML = ""
+            document.getElementById("bt9").innerHTML = ""
+
+            document.getElementById("bt1").disabled = false
+            document.getElementById("bt2").disabled = false
+            document.getElementById("bt3").disabled = false
+            document.getElementById("bt4").disabled = false
+            document.getElementById("bt5").disabled = false
+            document.getElementById("bt6").disabled = false
+            document.getElementById("bt7").disabled = false
+            document.getElementById("bt8").disabled = false
+            document.getElementById("bt9").disabled = false
+            empate = 0
+            proximaJogada = "x"
+            x = 0
+
+        }
+
+    </script>
+
+</body>
+
+</html>
